@@ -5,6 +5,7 @@
 *.key
 *.pem
 cloudfunctions/*/.env
+cloudfunctions/*/secret.js
 
 # 依赖
 node_modules/

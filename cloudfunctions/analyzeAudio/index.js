@@ -16,7 +16,9 @@ const https = require('https')
 cloud.init({ env: cloud.DYNAMIC_CURRENT_ENV })
 const db = cloud.database()
 
-const DEEPSEEK_API_KEY = process.env.DEEPSEEK_API_KEY || ''
+let _localSecrets = {}
+try { _localSecrets = require('./secret') } catch (e) {}
+const DEEPSEEK_API_KEY = process.env.DEEPSEEK_API_KEY || _localSecrets.DEEPSEEK_API_KEY || ''
 const DEEPSEEK_URL = 'https://api.deepseek.com/chat/completions'
 const DEEPSEEK_MODEL = 'deepseek-chat'
 
