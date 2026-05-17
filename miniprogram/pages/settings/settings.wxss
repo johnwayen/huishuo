@@ -1,0 +1,124 @@
+/* 设置 ⑪ */
+
+.page {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-page);
+}
+
+/* ============ 自定义导航栏 ============ */
+.nav-bar { width: 100%; flex-shrink: 0; }
+.nav-bar-content {
+  display: flex;
+  align-items: center;
+  padding: 0 48rpx;
+  justify-content: space-between;
+}
+.nav-back {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink);
+  background: transparent;
+}
+.back-icon {
+  width: 44rpx;
+  height: 44rpx;
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><polyline points='15 18 9 12 15 6'/></svg>") no-repeat center / contain;
+}
+.nav-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+
+/* ============ 滚动容器 ============ */
+.settings-scroll {
+  flex: 1;
+  height: 0;
+}
+.settings-inner {
+  padding: 16rpx 48rpx 80rpx;
+}
+
+/* ============ 分组标头 ============ */
+.list-section-title {
+  font-size: 22rpx;
+  color: var(--ink-3);
+  font-weight: 700;
+  letter-spacing: 0.8rpx;
+  margin: 32rpx 8rpx 20rpx;
+  text-transform: uppercase;
+}
+.list-section-title:first-child { margin-top: 0; }
+
+/* ============ 设置卡片 ============ */
+.settings-card {
+  background: var(--bg-card);
+  border: 1rpx solid var(--line);
+  border-radius: 28rpx;
+  margin-bottom: 28rpx;
+  overflow: hidden;
+}
+.settings-item {
+  display: flex;
+  align-items: center;
+  padding: 28rpx 32rpx;
+  border-bottom: 1rpx solid var(--line);
+}
+.settings-item:last-child { border-bottom: none; }
+.settings-item:active { background: var(--bg-soft); }
+
+.settings-label {
+  flex: 1;
+  font-size: 28rpx;
+  color: var(--ink);
+  font-weight: 500;
+}
+.settings-value {
+  font-size: 26rpx;
+  color: var(--ink-3);
+  margin-right: 12rpx;
+}
+.settings-arrow {
+  color: var(--ink-4);
+  font-size: 36rpx;
+  font-weight: 300;
+  line-height: 1;
+}
+
+/* ============ Toggle 开关 ============ */
+.toggle-switch {
+  width: 84rpx;
+  height: 48rpx;
+  background: var(--ink-4);
+  border-radius: 200rpx;
+  position: relative;
+  transition: background .25s;
+  flex-shrink: 0;
+}
+.toggle-switch::after {
+  content: '';
+  position: absolute;
+  top: 4rpx;
+  left: 4rpx;
+  width: 40rpx;
+  height: 40rpx;
+  background: #FFFFFF;
+  border-radius: 50%;
+  transition: transform .25s;
+  box-shadow: 0 2rpx 6rpx rgba(0, 0, 0, 0.15);
+}
+.toggle-switch.on { background: var(--accent); }
+.toggle-switch.on::after { transform: translateX(36rpx); }
+
+/* ============ 危险文本 ============ */
+.danger-text {
+  color: var(--danger, #C73E2E) !important;
+}

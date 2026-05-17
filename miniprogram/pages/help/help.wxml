@@ -1,0 +1,54 @@
+<!-- 帮助与反馈 ⑩ -->
+<view class="page">
+
+  <!-- 状态栏 + 自定义导航栏 -->
+  <view class="nav-bar" style="padding-top: {{statusBarHeight}}px;">
+    <view class="nav-bar-content" style="height: {{navBarHeight}}px;">
+      <view class="nav-back" catchtap="onBack">
+        <view class="back-icon"></view>
+      </view>
+      <view class="nav-title">帮助与反馈</view>
+      <view class="nav-back" style="visibility: hidden;"></view>
+    </view>
+  </view>
+
+  <!-- 滚动主体 -->
+  <scroll-view scroll-y class="subpage-list" enable-flex>
+    <view class="list-inner">
+
+      <!-- 常见问题 -->
+      <view class="list-section-title">常见问题</view>
+
+      <view
+        class="faq-item {{item.open ? 'open' : ''}}"
+        wx:for="{{faqs}}"
+        wx:key="q"
+        wx:for-index="idx"
+        catchtap="onToggleFaq"
+        data-idx="{{idx}}"
+      >
+        <view class="faq-question">
+          <text class="faq-q-text">{{item.q}}</text>
+          <view class="faq-arrow"></view>
+        </view>
+        <view class="faq-answer" wx:if="{{item.open}}">{{item.a}}</view>
+      </view>
+
+      <!-- 告诉我们 -->
+      <view class="list-section-title section-feedback">告诉我们</view>
+      <textarea
+        class="feedback-textarea"
+        placeholder="使用中遇到的问题、对会说的建议，欢迎告诉我们 ~"
+        placeholder-class="feedback-placeholder"
+        value="{{feedbackText}}"
+        bindinput="onFeedbackInput"
+        maxlength="500"
+        auto-height
+      ></textarea>
+      <button class="feedback-submit" catchtap="onSubmit">提交反馈</button>
+
+      <view class="bottom-spacer"></view>
+    </view>
+  </scroll-view>
+
+</view>

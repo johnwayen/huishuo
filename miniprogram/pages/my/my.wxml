@@ -1,0 +1,78 @@
+<!-- 我的 ⑥ -->
+<view class="page">
+
+  <view class="nav-bar" style="padding-top: {{statusBarHeight}}px;">
+    <view class="nav-bar-content" style="height: {{navBarHeight}}px;"></view>
+  </view>
+
+  <scroll-view scroll-y class="my-page">
+
+    <view class="my-header">
+      <view class="my-greeting-time">{{greeting}}</view>
+      <view class="my-greeting-name">{{userName}}</view>
+    </view>
+
+    <view class="my-stats">
+      <view class="my-stat">
+        <view class="my-stat-num is-accent">{{stats.streak}}</view>
+        <view class="my-stat-label">🔥 连续天数</view>
+      </view>
+      <view class="my-stat">
+        <view class="my-stat-num">{{stats.total}}</view>
+        <view class="my-stat-label">累计天数</view>
+      </view>
+      <view class="my-stat">
+        <view class="my-stat-num">{{stats.skeletons}}</view>
+        <view class="my-stat-label">学会公式</view>
+      </view>
+      <view class="my-stat">
+        <view class="my-stat-num">{{stats.favorites}}</view>
+        <view class="my-stat-label">收藏句子</view>
+      </view>
+    </view>
+
+    <view class="my-section">
+      <view class="my-section-head">
+        <view class="my-section-title">练习日历</view>
+      </view>
+      <view class="heatmap-card">
+        <view class="heatmap-months">
+          <text>{{monthLabels[0]}}</text>
+          <text>{{monthLabels[1]}}</text>
+          <text>{{monthLabels[2]}}</text>
+        </view>
+        <view class="heatmap-grid">
+          <view class="heatmap-cell {{item.lvl > 0 ? 'lvl-' + item.lvl : ''}}"
+                wx:for="{{heatmapCells}}" wx:key="key"></view>
+        </view>
+        <view class="heatmap-legend">
+          <text>少</text>
+          <view class="legend-cell"></view>
+          <view class="legend-cell lvl-1"></view>
+          <view class="legend-cell lvl-2"></view>
+          <view class="legend-cell lvl-3"></view>
+          <view class="legend-cell lvl-4"></view>
+          <text>多</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="my-section">
+      <view class="menu-list">
+        <view class="menu-item" wx:for="{{menuItems}}" wx:key="key" catchtap="onTapMenu" data-key="{{item.key}}">
+          <view class="menu-icon">
+            <view class="ic ic-{{item.icon}}"></view>
+          </view>
+          <view class="menu-label">{{item.label}}</view>
+          <view class="menu-badge" wx:if="{{item.badge}}">{{item.badge}}</view>
+          <view class="menu-arrow">›</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="my-footer">
+      会说 v0.1.0 · 每天 10 分钟{"\n"}从敢说到会说
+    </view>
+
+  </scroll-view>
+</view>

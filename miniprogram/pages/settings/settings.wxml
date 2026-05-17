@@ -1,0 +1,77 @@
+<!-- 设置 ⑪ -->
+<view class="page">
+
+  <!-- 状态栏 + 自定义导航栏 -->
+  <view class="nav-bar" style="padding-top: {{statusBarHeight}}px;">
+    <view class="nav-bar-content" style="height: {{navBarHeight}}px;">
+      <view class="nav-back" catchtap="onBack">
+        <view class="back-icon"></view>
+      </view>
+      <view class="nav-title">设置</view>
+      <view class="nav-back" style="visibility: hidden;"></view>
+    </view>
+  </view>
+
+  <!-- 列表内容 -->
+  <scroll-view scroll-y class="settings-scroll" enable-flex>
+    <view class="settings-inner">
+
+      <!-- A. 练习设置 -->
+      <view class="list-section-title">练习设置</view>
+      <view class="settings-card">
+        <view class="settings-item" catchtap="onToggleReminder">
+          <view class="settings-label">每日提醒</view>
+          <view class="toggle-switch {{dailyReminder ? 'on' : ''}}"></view>
+        </view>
+        <view class="settings-item" catchtap="onTapItem" data-key="reminderTime">
+          <view class="settings-label">提醒时间</view>
+          <view class="settings-value">{{reminderTime}}</view>
+          <view class="settings-arrow">›</view>
+        </view>
+        <view class="settings-item" catchtap="onTapItem" data-key="dailyCount">
+          <view class="settings-label">每日句数</view>
+          <view class="settings-value">{{dailyCount}}</view>
+          <view class="settings-arrow">›</view>
+        </view>
+        <view class="settings-item" catchtap="onTapItem" data-key="voice">
+          <view class="settings-label">标准朗读音色</view>
+          <view class="settings-value">{{voice}}</view>
+          <view class="settings-arrow">›</view>
+        </view>
+      </view>
+
+      <!-- B. 通用 -->
+      <view class="list-section-title">通用</view>
+      <view class="settings-card">
+        <view class="settings-item" catchtap="onTapItem" data-key="privacy">
+          <view class="settings-label">隐私协议</view>
+          <view class="settings-arrow">›</view>
+        </view>
+        <view class="settings-item" catchtap="onTapItem" data-key="terms">
+          <view class="settings-label">用户协议</view>
+          <view class="settings-arrow">›</view>
+        </view>
+        <view class="settings-item" catchtap="onTapItem" data-key="cache">
+          <view class="settings-label">清除缓存</view>
+          <view class="settings-value">{{cacheSize}}</view>
+          <view class="settings-arrow">›</view>
+        </view>
+        <view class="settings-item" catchtap="onTapItem" data-key="about">
+          <view class="settings-label">关于会说</view>
+          <view class="settings-value">{{version}}</view>
+          <view class="settings-arrow">›</view>
+        </view>
+      </view>
+
+      <!-- C. 账户 -->
+      <view class="list-section-title">账户</view>
+      <view class="settings-card">
+        <view class="settings-item" catchtap="onLogout">
+          <view class="settings-label danger-text">退出登录</view>
+        </view>
+      </view>
+
+    </view>
+  </scroll-view>
+
+</view>
