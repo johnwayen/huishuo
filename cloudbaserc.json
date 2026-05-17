@@ -1,0 +1,66 @@
+{
+  "envId": "cloud1-d8gbg0xlnc596a4e3",
+  "functionRoot": "cloudfunctions",
+  "functions": [
+    {
+      "name": "userLogin",
+      "timeout": 10,
+      "runtime": "Nodejs16.13",
+      "handler": "index.main"
+    },
+    {
+      "name": "getDailySentences",
+      "timeout": 10,
+      "runtime": "Nodejs16.13",
+      "handler": "index.main"
+    },
+    {
+      "name": "analyzeAudio",
+      "timeout": 60,
+      "runtime": "Nodejs16.13",
+      "handler": "index.main"
+    },
+    {
+      "name": "saveFavorite",
+      "timeout": 10,
+      "runtime": "Nodejs16.13",
+      "handler": "index.main"
+    },
+    {
+      "name": "updateStreak",
+      "timeout": 10,
+      "runtime": "Nodejs16.13",
+      "handler": "index.main"
+    },
+    {
+      "name": "getMyStats",
+      "timeout": 10,
+      "runtime": "Nodejs16.13",
+      "handler": "index.main"
+    },
+    {
+      "name": "getUserSkeletons",
+      "timeout": 10,
+      "runtime": "Nodejs16.13",
+      "handler": "index.main"
+    },
+    {
+      "name": "getUserFavorites",
+      "timeout": 10,
+      "runtime": "Nodejs16.13",
+      "handler": "index.main"
+    },
+    {
+      "name": "getUserRecordings",
+      "timeout": 10,
+      "runtime": "Nodejs16.13",
+      "handler": "index.main"
+    },
+    {
+      "name": "getLearningHistory",
+      "timeout": 10,
+      "runtime": "Nodejs16.13",
+      "handler": "index.main"
+    }
+  ]
+}

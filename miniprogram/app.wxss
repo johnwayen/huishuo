@@ -1,0 +1,102 @@
+/**
+ * 会说 · 全局样式 + 设计 token
+ * 设计语言：暖米白底 / 深墨主色 / 珊瑚橙强调
+ * 对照: prototype-v1.html
+ */
+
+/* ============ Design Tokens ============ */
+page {
+  /* 背景层 */
+  --bg-page: #EFEDE7;
+  --bg-card: #FFFFFF;
+  --bg-soft: #F7F5F0;
+  --bg-deeper: #F0EDE5;
+
+  /* 墨色系（文本 / 边框）*/
+  --ink: #1C1B1A;
+  --ink-2: #4A4845;
+  --ink-3: #8E8B86;
+  --ink-4: #C7C3BC;
+
+  --line: #EDEAE3;
+  --line-2: #DAD5CB;
+
+  /* 强调色 */
+  --accent: #FF6B52;
+  --accent-soft: #FFE9E3;
+
+  /* Slot tag 三色（结构骨架）*/
+  --tag-1-bg: #E8F0E5; --tag-1-fg: #3F6B3F;
+  --tag-2-bg: #FDEDE0; --tag-2-fg: #A35424;
+  --tag-3-bg: #E7EBF3; --tag-3-fg: #46578A;
+
+  /* 语义色 */
+  --gold: #D4A24C;
+  --good: #3F6B3F;
+  --bad: #A35424;
+  --danger: #C73E2E;
+
+  /* 阴影 */
+  --shadow-card: 0 1rpx 2rpx rgba(28,27,26,.04), 0 16rpx 48rpx rgba(28,27,26,.06);
+  --shadow-screen: 0 60rpx 120rpx rgba(28,27,26,.12), 0 4rpx 12rpx rgba(28,27,26,.04);
+
+  /* 基础设置 */
+  background: var(--bg-page);
+  color: var(--ink);
+  font-size: 28rpx;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+}
+
+/* ============ Reset ============ */
+view, text, button, input, textarea {
+  box-sizing: border-box;
+}
+button {
+  background: initial;
+  padding: 0;
+  margin: 0;
+  line-height: 1;
+  border-radius: 0;
+}
+button::after {
+  border: none;
+}
+
+/* ============ 通用 tag chip ============ */
+.tag-chip {
+  display: inline-block;
+  font-size: 22rpx;
+  font-weight: 600;
+  padding: 4rpx 16rpx;
+  border-radius: 12rpx;
+  margin-right: 8rpx;
+  letter-spacing: 0.6rpx;
+  vertical-align: middle;
+}
+.tag-chip.tag-1 { background: var(--tag-1-bg); color: var(--tag-1-fg); }
+.tag-chip.tag-2 { background: var(--tag-2-bg); color: var(--tag-2-fg); }
+.tag-chip.tag-3 { background: var(--tag-3-bg); color: var(--tag-3-fg); }
+
+/* ============ 安全区（避开小程序胶囊）============ */
+.safe-top { padding-top: 88rpx; }     /* 状态栏 + 导航栏总高 */
+.capsule-safe-area { height: 88rpx; }  /* 占位 */
+
+/* ============ 实用类 ============ */
+.flex { display: flex; }
+.flex-col { display: flex; flex-direction: column; }
+.flex-1 { flex: 1; }
+.center { align-items: center; justify-content: center; }
+.between { justify-content: space-between; }
+
+.text-ink   { color: var(--ink); }
+.text-ink-2 { color: var(--ink-2); }
+.text-ink-3 { color: var(--ink-3); }
+.text-accent { color: var(--accent); }
+.bold { font-weight: 600; }
+.bold-7 { font-weight: 700; }
+.bold-8 { font-weight: 800; }
+
+.muted { opacity: 0.6; }
+.hidden { display: none !important; }

@@ -1,0 +1,36 @@
+# 密钥 - 绝不提交
+.env
+.env.local
+.env.production
+*.key
+*.pem
+cloudfunctions/*/.env
+
+# 依赖
+node_modules/
+miniprogram_npm/
+cloudfunctions/*/node_modules/
+
+# 构建产物
+dist/
+.next/
+build/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# macOS
+.DS_Store
+
+# 微信开发者工具
+project.private.config.json
+
+# 日志
+*.log
+logs/
+
+# 临时文件
+tmp/
+.tmp/

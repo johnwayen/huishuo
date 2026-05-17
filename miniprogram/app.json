@@ -1,0 +1,54 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/structure/structure",
+    "pages/record/record",
+    "pages/feedback/feedback",
+    "pages/celebration/celebration",
+    "pages/my/my",
+    "pages/formulas/formulas",
+    "pages/favorites/favorites",
+    "pages/recordings/recordings",
+    "pages/history/history",
+    "pages/help/help",
+    "pages/settings/settings"
+  ],
+  "window": {
+    "backgroundColor": "#EFEDE7",
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#EFEDE7",
+    "navigationBarTitleText": "会说",
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "custom"
+  },
+  "tabBar": {
+    "color": "#8E8B86",
+    "selectedColor": "#1C1B1A",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "练习"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的"
+      }
+    ]
+  },
+  "plugins": {
+    "WechatSI": {
+      "version": "0.3.6",
+      "provider": "wx069ba97219f66d99"
+    }
+  },
+  "permission": {
+    "scope.record": {
+      "desc": "用于录制你的朗读，给出 AI 反馈"
+    }
+  },
+  "lazyCodeLoading": "requiredComponents",
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}
