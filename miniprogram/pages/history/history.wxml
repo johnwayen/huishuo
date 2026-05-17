@@ -1,0 +1,50 @@
+<!-- 学习记录 ⑩ -->
+<view class="page">
+
+  <!-- 状态栏 + 自定义导航栏 -->
+  <view class="nav-bar" style="padding-top: {{statusBarHeight}}px;">
+    <view class="nav-bar-content" style="height: {{navBarHeight}}px;">
+      <view class="nav-back" catchtap="onBack">
+        <view class="back-icon"></view>
+      </view>
+      <view class="nav-title">学习记录</view>
+      <view class="nav-back" style="visibility: hidden;"></view>
+    </view>
+  </view>
+
+  <!-- 列表区 -->
+  <scroll-view scroll-y class="subpage-list" enable-flex>
+    <!-- Filter pills -->
+    <view class="subpage-filter-bar">
+      <view
+        class="filter-pill {{currentFilter === idx ? 'active' : ''}}"
+        wx:for="{{filters}}"
+        wx:key="*this"
+        wx:for-index="idx"
+        catchtap="onTapFilter"
+        data-idx="{{idx}}"
+      >{{item}}</view>
+    </view>
+
+    <!-- Timeline -->
+    <view
+      class="timeline-item {{item.missed ? 'missed' : ''}}"
+      wx:for="{{timeline}}"
+      wx:key="date"
+    >
+      <view class="timeline-date">
+        <view class="timeline-dot {{item.missed ? 'missed' : ''}}"></view>
+        <text>{{item.date}}{{item.dayLabel ? ' · ' + item.dayLabel : ''}}</text>
+      </view>
+      <view class="timeline-summary">{{item.summary}}</view>
+      <view class="timeline-stats" wx:if="{{!item.missed && item.stats}}">
+        <view class="timeline-stat"><text class="stat-b">{{item.stats.sentences}}</text> 句</view>
+        <view class="timeline-stat"><text class="stat-b">{{item.stats.minutes}}</text> 分钟</view>
+        <view class="timeline-stat">均分 <text class="stat-b">{{item.stats.avg}}</text></view>
+      </view>
+    </view>
+
+    <view class="list-bottom-pad"></view>
+  </scroll-view>
+
+</view>

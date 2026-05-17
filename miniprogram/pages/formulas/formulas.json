@@ -1,1 +1,6 @@
-{}
+{
+  "navigationStyle": "custom",
+  "backgroundColor": "#EFEDE7",
+  "disableScroll": true,
+  "usingComponents": {}
+}

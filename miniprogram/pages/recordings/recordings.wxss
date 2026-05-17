@@ -1,0 +1,149 @@
+/* 我的录音 ⑨ */
+
+.page {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-page);
+}
+
+/* ============ 自定义导航栏 ============ */
+.nav-bar { width: 100%; flex-shrink: 0; }
+.nav-bar-content {
+  display: flex;
+  align-items: center;
+  padding: 0 48rpx;
+  justify-content: space-between;
+}
+.nav-back {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink);
+  background: transparent;
+}
+.back-icon {
+  width: 44rpx;
+  height: 44rpx;
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><polyline points='15 18 9 12 15 6'/></svg>") no-repeat center / contain;
+}
+.nav-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+
+/* ============ 列表容器 ============ */
+.subpage-list {
+  flex: 1;
+  padding: 8rpx 40rpx 48rpx;
+  box-sizing: border-box;
+}
+
+/* ============ Filter pill bar ============ */
+.subpage-filter-bar {
+  display: flex;
+  gap: 16rpx;
+  padding: 8rpx 0 28rpx;
+  flex-wrap: wrap;
+}
+.filter-pill {
+  padding: 14rpx 28rpx;
+  border-radius: 200rpx;
+  background: var(--bg-card);
+  border: 1rpx solid var(--line);
+  font-size: 24rpx;
+  font-weight: 600;
+  color: var(--ink-3);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.filter-pill.active {
+  background: var(--ink);
+  color: #FFF;
+  border-color: var(--ink);
+}
+
+/* ============ 分组标题 ============ */
+.list-section-title {
+  font-size: 24rpx;
+  color: var(--ink-3);
+  font-weight: 700;
+  letter-spacing: 0.8rpx;
+  margin: 32rpx 8rpx 20rpx;
+  text-transform: uppercase;
+}
+.list-section-title:first-child { margin-top: 0; }
+
+/* ============ 录音列表卡 ============ */
+.rec-list-card {
+  background: var(--bg-card);
+  border: 1rpx solid var(--line);
+  border-radius: 28rpx;
+  padding: 24rpx 28rpx;
+  margin-bottom: 20rpx;
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+}
+.rec-list-play {
+  width: 84rpx;
+  height: 84rpx;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #FFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.play-icon {
+  width: 24rpx;
+  height: 24rpx;
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='black'><polygon points='4,2.5 13,8 4,13.5'/></svg>") no-repeat center / contain;
+  margin-left: 4rpx;
+}
+.rec-list-content {
+  flex: 1;
+  overflow: hidden;
+  min-width: 0;
+}
+.rec-list-text {
+  font-size: 26rpx;
+  color: var(--ink);
+  font-weight: 500;
+  line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 10rpx;
+}
+.rec-list-meta {
+  display: flex;
+  align-items: center;
+  gap: 14rpx;
+  font-size: 22rpx;
+  color: var(--ink-3);
+}
+.rec-list-meta .meta-divider {
+  color: var(--ink-4);
+}
+.rec-list-score {
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-weight: 700;
+  padding: 4rpx 14rpx;
+  border-radius: 10rpx;
+  font-size: 20rpx;
+  margin-left: auto;
+}
+.rec-list-score.high {
+  background: var(--tag-1-bg);
+  color: var(--tag-1-fg);
+}

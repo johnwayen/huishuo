@@ -1,0 +1,127 @@
+/* 我收藏的句子 ⑧ */
+
+.page {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-page);
+}
+
+/* ============ 自定义导航栏 ============ */
+.nav-bar { width: 100%; flex-shrink: 0; }
+.nav-bar-content {
+  display: flex;
+  align-items: center;
+  padding: 0 48rpx;
+  justify-content: space-between;
+}
+.nav-back {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink);
+  background: transparent;
+}
+.back-icon {
+  width: 44rpx;
+  height: 44rpx;
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><polyline points='15 18 9 12 15 6'/></svg>") no-repeat center / contain;
+}
+.nav-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+
+/* ============ Filter pill bar ============ */
+.filter-bar {
+  display: flex;
+  gap: 16rpx;
+  padding: 8rpx 48rpx 28rpx;
+  flex-shrink: 0;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+.filter-bar::-webkit-scrollbar { display: none; }
+
+.filter-pill {
+  padding: 14rpx 28rpx;
+  border-radius: 200rpx;
+  background: var(--bg-card);
+  border: 1rpx solid var(--line);
+  font-size: 24rpx;
+  font-weight: 600;
+  color: var(--ink-3);
+  flex-shrink: 0;
+  transition: background .2s, color .2s, border-color .2s;
+}
+.filter-pill.active {
+  background: var(--ink);
+  color: #FFF;
+  border-color: var(--ink);
+}
+
+/* ============ 列表 ============ */
+.fav-list {
+  flex: 1;
+  height: 0;
+}
+.fav-list-inner {
+  padding: 0 48rpx 64rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+/* ============ 收藏卡 ============ */
+.fav-list-card {
+  background: var(--bg-card);
+  border: 1rpx solid var(--line);
+  border-radius: 28rpx;
+  padding: 28rpx 30rpx;
+}
+.fav-list-text {
+  font-size: 28rpx;
+  color: var(--ink);
+  font-weight: 500;
+  line-height: 1.6;
+  margin-bottom: 20rpx;
+}
+.fav-list-meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 22rpx;
+  font-weight: 500;
+}
+.fav-list-tags {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.meta-pattern {
+  color: var(--accent);
+  font-weight: 600;
+}
+.meta-divider {
+  color: var(--ink-4);
+}
+.meta-scene {
+  color: var(--ink-3);
+}
+.fav-list-date {
+  color: var(--ink-4);
+  font-size: 22rpx;
+  font-weight: 500;
+  flex-shrink: 0;
+  margin-left: 16rpx;
+}

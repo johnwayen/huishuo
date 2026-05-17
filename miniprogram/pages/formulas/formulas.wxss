@@ -1,0 +1,163 @@
+/* 我学会的公式 ⑦ */
+
+.page {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-page);
+}
+
+/* ============ 自定义导航栏 ============ */
+.nav-bar { width: 100%; flex-shrink: 0; }
+.nav-bar-content {
+  display: flex;
+  align-items: center;
+  padding: 0 48rpx;
+  justify-content: space-between;
+}
+.nav-back {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink);
+  background: transparent;
+}
+.back-icon {
+  width: 44rpx;
+  height: 44rpx;
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><polyline points='15 18 9 12 15 6'/></svg>") no-repeat center / contain;
+}
+.nav-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+
+/* ============ 列表滚动容器 ============ */
+.subpage-list {
+  flex: 1;
+  padding: 8rpx 40rpx 48rpx;
+  box-sizing: border-box;
+}
+
+/* ============ Filter pills ============ */
+.subpage-filter-bar {
+  display: flex;
+  gap: 16rpx;
+  padding: 8rpx 0 28rpx;
+  flex-wrap: wrap;
+}
+.filter-pill {
+  padding: 14rpx 28rpx;
+  border-radius: 200rpx;
+  background: var(--bg-card);
+  border: 1rpx solid var(--line);
+  font-size: 24rpx;
+  font-weight: 600;
+  color: var(--ink-3);
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background .2s, color .2s, border-color .2s;
+}
+.filter-pill.active {
+  background: var(--ink);
+  color: #FFF;
+  border-color: var(--ink);
+}
+
+/* ============ 公式卡 ============ */
+.formula-list-card {
+  background: var(--bg-card);
+  border: 1rpx solid var(--line);
+  border-radius: 28rpx;
+  padding: 28rpx;
+  margin-bottom: 20rpx;
+  transition: background .15s, transform .15s;
+}
+.formula-list-card:active {
+  transform: translateY(-1rpx);
+  background: var(--bg-soft);
+}
+.formula-list-name {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.2rpx;
+  margin-bottom: 20rpx;
+}
+.formula-list-chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6rpx;
+  margin-bottom: 24rpx;
+}
+.formula-list-chips .tag-chip {
+  font-size: 20rpx;
+  font-weight: 600;
+  padding: 4rpx 14rpx;
+  border-radius: 10rpx;
+  margin: 0;
+  letter-spacing: 0.4rpx;
+  line-height: 1.5;
+}
+.formula-arrow {
+  color: var(--ink-4);
+  font-size: 22rpx;
+  margin: 0 2rpx;
+  line-height: 1;
+}
+
+/* ============ 进度行 ============ */
+.formula-list-progress {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+}
+.formula-list-progress-meta {
+  font-size: 22rpx;
+  color: var(--ink-3);
+  font-weight: 500;
+  flex-shrink: 0;
+}
+.formula-list-progress-bar {
+  flex: 1;
+  height: 6rpx;
+  background: var(--bg-deeper);
+  border-radius: 4rpx;
+  overflow: hidden;
+  min-width: 80rpx;
+}
+.formula-list-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), #FFA391);
+  border-radius: 4rpx;
+  transition: width .35s cubic-bezier(.22,.61,.36,1);
+}
+.formula-list-progress-percent {
+  font-size: 22rpx;
+  font-weight: 700;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
+  letter-spacing: 0.4rpx;
+}
+
+/* ============ 空状态 ============ */
+.empty-state {
+  padding: 80rpx 0;
+  text-align: center;
+}
+.empty-text {
+  font-size: 26rpx;
+  color: var(--ink-3);
+}
+
+.list-bottom-spacer {
+  height: 40rpx;
+}

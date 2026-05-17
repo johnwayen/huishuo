@@ -1,0 +1,63 @@
+<!-- 我学会的公式 ⑦ -->
+<view class="page">
+
+  <!-- 状态栏 + 自定义导航栏 -->
+  <view class="nav-bar" style="padding-top: {{statusBarHeight}}px;">
+    <view class="nav-bar-content" style="height: {{navBarHeight}}px;">
+      <view class="nav-back" catchtap="onBack">
+        <view class="back-icon"></view>
+      </view>
+      <view class="nav-title">我学会的公式 · {{totalCount}} 个</view>
+      <view class="nav-back" style="visibility: hidden;"></view>
+    </view>
+  </view>
+
+  <!-- 列表区域（含 filter 与 cards） -->
+  <scroll-view scroll-y class="subpage-list" enhanced show-scrollbar="{{false}}">
+
+    <!-- Filter pills -->
+    <view class="subpage-filter-bar">
+      <view
+        wx:for="{{filters}}"
+        wx:key="key"
+        class="filter-pill {{activeFilter === item.key ? 'active' : ''}}"
+        catchtap="onTapFilter"
+        data-key="{{item.key}}"
+      >{{item.label}}</view>
+    </view>
+
+    <!-- Formula cards -->
+    <view
+      wx:for="{{formulas}}"
+      wx:key="id"
+      class="formula-list-card"
+      catchtap="onTapCard"
+      data-id="{{item.id}}"
+    >
+      <view class="formula-list-name">{{item.name}}</view>
+
+      <view class="formula-list-chips">
+        <block wx:for="{{item.slots}}" wx:key="*this" wx:for-item="slot" wx:for-index="slotIdx">
+          <text class="tag-chip tag-{{slotIdx + 1}}">{{slot}}</text>
+          <text wx:if="{{slotIdx < item.slots.length - 1}}" class="formula-arrow">→</text>
+        </block>
+      </view>
+
+      <view class="formula-list-progress">
+        <view class="formula-list-progress-meta">{{item.speech_act}} · 已练 {{item.practiced}} 句</view>
+        <view class="formula-list-progress-bar">
+          <view class="formula-list-progress-fill" style="width: {{item.progress}}%;"></view>
+        </view>
+        <view class="formula-list-progress-percent">{{item.progress}}%</view>
+      </view>
+    </view>
+
+    <!-- 空状态 -->
+    <view wx:if="{{formulas.length === 0}}" class="empty-state">
+      <view class="empty-text">这个分类下还没有公式</view>
+    </view>
+
+    <view class="list-bottom-spacer"></view>
+  </scroll-view>
+
+</view>

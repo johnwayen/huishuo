@@ -1,0 +1,76 @@
+<!-- 我的录音 ⑨ -->
+<view class="page">
+
+  <!-- 状态栏 + 自定义导航栏 -->
+  <view class="nav-bar" style="padding-top: {{statusBarHeight}}px;">
+    <view class="nav-bar-content" style="height: {{navBarHeight}}px;">
+      <view class="nav-back" catchtap="onBack">
+        <view class="back-icon"></view>
+      </view>
+      <view class="nav-title">我的录音 · {{totalCount}} 条</view>
+      <view class="nav-back" style="visibility: hidden;"></view>
+    </view>
+  </view>
+
+  <!-- 主体内容 -->
+  <scroll-view scroll-y class="subpage-list" enable-flex>
+
+    <!-- Filter 药丸 -->
+    <view class="subpage-filter-bar">
+      <view
+        class="filter-pill {{currentFilter === idx ? 'active' : ''}}"
+        wx:for="{{filters}}"
+        wx:key="*this"
+        wx:for-index="idx"
+        catchtap="onTapFilter"
+        data-idx="{{idx}}"
+      >{{item}}</view>
+    </view>
+
+    <!-- 今天 -->
+    <view class="list-section-title">今天</view>
+    <view
+      class="rec-list-card"
+      wx:for="{{recordings.today}}"
+      wx:key="id"
+      wx:for-item="rec"
+    >
+      <view class="rec-list-play" catchtap="onTapPlay" data-id="{{rec.id}}">
+        <view class="play-icon"></view>
+      </view>
+      <view class="rec-list-content">
+        <view class="rec-list-text">{{rec.text}}</view>
+        <view class="rec-list-meta">
+          <text>{{rec.time}}</text>
+          <text class="meta-divider">·</text>
+          <text>{{rec.duration}}</text>
+          <text class="rec-list-score {{rec.score >= 80 ? 'high' : ''}}">{{rec.score}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 昨天 -->
+    <view class="list-section-title">昨天</view>
+    <view
+      class="rec-list-card"
+      wx:for="{{recordings.yesterday}}"
+      wx:key="id"
+      wx:for-item="rec"
+    >
+      <view class="rec-list-play" catchtap="onTapPlay" data-id="{{rec.id}}">
+        <view class="play-icon"></view>
+      </view>
+      <view class="rec-list-content">
+        <view class="rec-list-text">{{rec.text}}</view>
+        <view class="rec-list-meta">
+          <text>{{rec.time}}</text>
+          <text class="meta-divider">·</text>
+          <text>{{rec.duration}}</text>
+          <text class="rec-list-score {{rec.score >= 80 ? 'high' : ''}}">{{rec.score}}</text>
+        </view>
+      </view>
+    </view>
+
+  </scroll-view>
+
+</view>

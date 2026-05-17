@@ -1,0 +1,44 @@
+<!-- 我收藏的句子 ⑧ -->
+<view class="page">
+
+  <!-- 状态栏 + 自定义导航栏 -->
+  <view class="nav-bar" style="padding-top: {{statusBarHeight}}px;">
+    <view class="nav-bar-content" style="height: {{navBarHeight}}px;">
+      <view class="nav-back" catchtap="onBack">
+        <view class="back-icon"></view>
+      </view>
+      <view class="nav-title">我收藏的句子 · {{favCount}} 句</view>
+      <view class="nav-back" style="visibility: hidden;"></view>
+    </view>
+  </view>
+
+  <!-- Filter pill bar -->
+  <view class="filter-bar">
+    <view
+      class="filter-pill {{currentFilter === idx ? 'active' : ''}}"
+      wx:for="{{filters}}"
+      wx:key="*this"
+      wx:for-index="idx"
+      catchtap="onTapFilter"
+      data-idx="{{idx}}"
+    >{{item}}</view>
+  </view>
+
+  <!-- 收藏列表 -->
+  <scroll-view scroll-y class="fav-list" enable-flex>
+    <view class="fav-list-inner">
+      <view class="fav-list-card" wx:for="{{favorites}}" wx:key="id">
+        <view class="fav-list-text">"{{item.text}}"</view>
+        <view class="fav-list-meta-row">
+          <view class="fav-list-tags">
+            <text class="meta-pattern">{{item.pattern}}</text>
+            <text class="meta-divider"> · </text>
+            <text class="meta-scene">{{item.scene}}</text>
+          </view>
+          <view class="fav-list-date">{{item.date}} 收藏</view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+</view>
