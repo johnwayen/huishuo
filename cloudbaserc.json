@@ -61,6 +61,12 @@
       "timeout": 10,
       "runtime": "Nodejs16.13",
       "handler": "index.main"
+    },
+    {
+      "name": "initDb",
+      "timeout": 30,
+      "runtime": "Nodejs16.13",
+      "handler": "index.main"
     }
   ]
 }
