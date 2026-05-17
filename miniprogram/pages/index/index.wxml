@@ -1,0 +1,113 @@
+<!-- 首页 ① 首屏 · 看到句子 -->
+<view class="page">
+
+  <!-- 状态栏占位 + 自定义导航栏（streak 在左，胶囊在右占位） -->
+  <view class="nav-bar" style="padding-top: {{statusBarHeight}}px;">
+    <view class="nav-bar-content" style="height: {{navBarHeight}}px;">
+      <view class="streak">
+        <text class="flame">🔥</text>
+        <text class="streak-text">连续 {{streak.count}} 天</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 主内容：swiper + 底部 actions -->
+  <view class="content">
+    <swiper
+      class="swiper"
+      current="{{currentIdx}}"
+      bindchange="onSwiperChange"
+      duration="380"
+      easing-function="easeOutCubic"
+    >
+      <swiper-item wx:for="{{sentences}}" wx:key="_id" wx:for-item="item">
+        <view class="slide">
+          <view class="scene-meta">
+            <text class="scene-pill">{{item.scene_category}} · {{index + 1}} / {{sentences.length}}</text>
+          </view>
+
+          <view class="scene-title-row">
+            <view class="scene-title-block">
+              <view class="scene-title">{{item.scene_title}}</view>
+              <view class="scene-sub">{{item.scene_sub}}</view>
+            </view>
+            <view
+              class="btn-favorite-inline {{favorites[item._id] ? 'is-fav' : ''}} {{popIds[item._id] ? 'popping' : ''}}"
+              data-id="{{item._id}}"
+              catchtap="onTapFavorite"
+            >
+              <view class="heart-icon"></view>
+            </view>
+          </view>
+
+          <view class="sentence-card {{listeningId === item._id ? 'is-listening' : ''}}">
+            <view class="sentence">
+              <text
+                wx:for="{{item.slots}}"
+                wx:for-item="slot"
+                wx:for-index="slotIdx"
+                wx:key="type"
+                class="seg seg-{{slotIdx + 1}} {{currentSegIdx === slotIdx && listeningId === item._id ? 'current-seg' : ''}}"
+              >{{slot.text}}<text wx:if="{{slotIdx < item.slots.length - 1}}">，</text></text>
+              <text>。</text>
+            </view>
+          </view>
+
+          <view class="structure-hint" catchtap="onTapStructure" data-id="{{item._id}}">
+            <view class="hint-row">
+              <text class="hint-label">💡 这句话的骨架</text>
+              <text class="hint-action">点开看 ›</text>
+            </view>
+            <view class="structure-formula">
+              <block wx:for="{{item.slots}}" wx:for-item="slot" wx:for-index="slotIdx" wx:key="type">
+                <text class="tag-chip tag-{{slotIdx + 1}}">{{slot.type}}</text>
+                <text wx:if="{{slotIdx < item.slots.length - 1}}" class="formula-arrow">→</text>
+              </block>
+            </view>
+          </view>
+        </view>
+      </swiper-item>
+    </swiper>
+
+    <!-- 底部 actions -->
+    <view class="actions">
+      <button class="btn-listen {{listeningId ? 'is-playing' : ''}}" catchtap="onTapListen">
+        <view class="icon-triangle"></view>
+        <text>听一遍</text>
+      </button>
+      <button class="btn-record" catchtap="onTapRecord">
+        <view class="icon-mic"></view>
+        <text>我来读</text>
+      </button>
+    </view>
+  </view>
+
+  <!-- 启动页 splash -->
+  <view class="launch-screen {{launchHidden ? 'hidden' : ''}}" wx:if="{{showLaunch}}">
+    <view class="launch-content">
+      <view class="launch-brand {{launchAnim ? 'animate' : ''}}">会说</view>
+      <view class="launch-underline {{launchAnim ? 'animate' : ''}}"></view>
+      <view class="launch-slogan {{launchAnim ? 'animate' : ''}}">每天 10 分钟，从敢说到会说</view>
+    </view>
+    <view class="launch-footer {{launchAnim ? 'animate' : ''}}">职场表达 <text class="dot-accent">·</text> 陪你练</view>
+  </view>
+
+  <!-- 教学引导 tutorial -->
+  <view class="tutorial {{showTutorial ? 'show' : ''}}" wx:if="{{showTutorial}}" catchtap="noop">
+    <view
+      class="tutorial-spotlight"
+      style="left: {{spot.left}}px; top: {{spot.top}}px; width: {{spot.width}}px; height: {{spot.height}}px;"
+    ></view>
+    <view class="tutorial-message" style="top: {{msg.top}}px;">
+      <view class="tutorial-step-num">{{tutorialStep + 1}} / 3</view>
+      <view class="tutorial-title">{{tutorialSteps[tutorialStep].title}}</view>
+      <view class="tutorial-actions">
+        <view class="tutorial-skip" catchtap="onTutorialSkip">跳过</view>
+        <view class="tutorial-next" catchtap="onTutorialNext">
+          {{tutorialStep === 2 ? '开始练习' : '下一步'}}
+        </view>
+      </view>
+    </view>
+  </view>
+
+</view>

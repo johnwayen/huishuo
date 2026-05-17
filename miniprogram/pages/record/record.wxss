@@ -1,0 +1,284 @@
+/* 跟读 ③ */
+
+.page {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-page);
+}
+
+/* ============ Nav bar ============ */
+.nav-bar { width: 100%; flex-shrink: 0; }
+.nav-bar-content {
+  display: flex;
+  align-items: center;
+  padding: 0 48rpx;
+  justify-content: space-between;
+}
+.nav-back {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink);
+}
+.back-icon {
+  width: 44rpx;
+  height: 44rpx;
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><polyline points='15 18 9 12 15 6'/></svg>") no-repeat center / contain;
+}
+.nav-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+
+/* ============ Stage ============ */
+.record-stage {
+  flex: 1;
+  padding: 8rpx 48rpx 32rpx;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.step-label {
+  margin-top: 32rpx;
+  font-size: 24rpx;
+  color: var(--accent);
+  font-weight: 700;
+  letter-spacing: 2rpx;
+}
+.step-title {
+  margin-top: 12rpx;
+  font-size: 44rpx;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.4rpx;
+}
+.step-sub {
+  margin-top: 12rpx;
+  font-size: 26rpx;
+  color: var(--ink-3);
+  line-height: 1.5;
+}
+
+.sentence-record {
+  margin-top: 40rpx;
+  background: var(--bg-card);
+  border-radius: 40rpx;
+  padding: 40rpx 36rpx;
+  border: 1rpx solid var(--line);
+}
+.sentence-r {
+  font-size: 36rpx;
+  line-height: 1.85;
+  color: var(--ink);
+  font-weight: 500;
+}
+.ch {
+  position: relative;
+  display: inline;
+}
+.ch.stress {
+  color: var(--ink);
+  font-weight: 700;
+  position: relative;
+}
+.ch.stress::before {
+  content: '';
+  position: absolute;
+  top: -8rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8rpx;
+  height: 8rpx;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.pause-mark {
+  display: inline-block;
+  color: var(--ink-4);
+  font-weight: 700;
+  margin: 0 4rpx;
+  font-size: 26rpx;
+  vertical-align: middle;
+}
+
+/* ============ Waveform 区 ============ */
+.waveform-section {
+  margin-top: 40rpx;
+  background: var(--bg-card);
+  border-radius: 40rpx;
+  padding: 28rpx 32rpx;
+  border: 1rpx solid var(--line);
+}
+.wave-row {
+  display: flex;
+  align-items: center;
+  gap: 18rpx;
+  padding: 14rpx 0;
+}
+.wave-row + .wave-row {
+  border-top: 1rpx solid var(--line);
+}
+.wave-label {
+  font-size: 20rpx;
+  color: var(--ink-3);
+  width: 60rpx;
+  font-weight: 600;
+}
+.wave-label.user { color: var(--accent); }
+.waveform {
+  flex: 1;
+  height: 56rpx;
+  display: flex;
+  align-items: center;
+  gap: 3rpx;
+  min-width: 0;
+  overflow: hidden;
+}
+.wave-bar {
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 6rpx;
+  background: var(--ink-4);
+  border-radius: 2rpx;
+  transition: transform .25s, background .25s;
+}
+.wave-bar.ai { background: var(--ink-3); }
+.wave-bar.user-bar { background: var(--accent); }
+.wave-bar.playing { transform: scaleY(1.35); }
+
+/* 未录音状态 user wave 浅色 */
+.page:not(.recorded) .wave-bar.user-bar {
+  background: var(--ink-4);
+  opacity: 0.4;
+}
+.play-btn {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  background: var(--bg-soft);
+  border: 1rpx solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-2);
+}
+.play-btn.disabled {
+  opacity: 0.4;
+}
+.icon-triangle {
+  width: 22rpx;
+  height: 22rpx;
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'><path d='M8 5v14l11-7z'/></svg>") no-repeat center / contain;
+}
+.icon-pause {
+  width: 22rpx;
+  height: 22rpx;
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'><rect x='6' y='4' width='4' height='16' rx='1'/><rect x='14' y='4' width='4' height='16' rx='1'/></svg>") no-repeat center / contain;
+}
+
+/* ============ 录音区 ============ */
+.record-area {
+  margin-top: auto;
+  padding-top: 48rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24rpx;
+}
+.record-tip {
+  font-size: 26rpx;
+  color: var(--ink-3);
+  transition: color .25s;
+}
+.page.recording .record-tip { color: var(--accent); font-weight: 600; }
+
+.record-btn-wrap {
+  position: relative;
+  width: 192rpx;
+  height: 192rpx;
+}
+.record-btn-pulse {
+  position: absolute;
+  inset: -20rpx;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0;
+  pointer-events: none;
+}
+.page.recording .record-btn-pulse {
+  opacity: 0.18;
+  animation: pulse 1.6s ease-out infinite;
+}
+@keyframes pulse {
+  0% { transform: scale(0.92); opacity: 0.32; }
+  100% { transform: scale(1.18); opacity: 0; }
+}
+.record-btn {
+  width: 192rpx;
+  height: 192rpx;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 10rpx solid #FFF;
+  box-shadow: 0 12rpx 40rpx rgba(255,107,82,.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFF;
+  font-size: 56rpx;
+  position: relative;
+  z-index: 1;
+  transition: transform .15s, background .15s;
+}
+.page.recording .record-btn {
+  transform: scale(0.94);
+  background: #E04A35;
+}
+.page.recorded .record-btn {
+  background: var(--ink-3);
+  box-shadow: 0 8rpx 24rpx rgba(28,27,26,.15);
+}
+.record-timer {
+  font-size: 26rpx;
+  color: var(--ink-3);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+}
+.record-timer .live {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* 完成后按钮 */
+.next-action {
+  margin-top: 24rpx;
+  padding: 24rpx 48rpx;
+  background: var(--ink);
+  color: #FFF;
+  border: none;
+  border-radius: 28rpx;
+  font-size: 28rpx;
+  font-weight: 600;
+  display: none;
+  letter-spacing: 0.6rpx;
+}
+.next-action.show {
+  display: inline-flex;
+  animation: slideUpIn .35s cubic-bezier(.22,.61,.36,1) forwards;
+}
+@keyframes slideUpIn {
+  from { opacity: 0; transform: translateY(20rpx); }
+  to { opacity: 1; transform: translateY(0); }
+}

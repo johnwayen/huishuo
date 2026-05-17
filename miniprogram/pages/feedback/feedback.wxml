@@ -1,0 +1,91 @@
+<!-- AI 点评 ④ -->
+<view class="page">
+
+  <!-- 状态栏 + 自定义导航栏 -->
+  <view class="nav-bar" style="padding-top: {{statusBarHeight}}px;">
+    <view class="nav-bar-content" style="height: {{navBarHeight}}px;">
+      <view class="nav-back" catchtap="onClose">
+        <view class="close-icon"></view>
+      </view>
+      <view class="nav-title">本句点评</view>
+      <view class="nav-back" style="visibility: hidden;"></view>
+    </view>
+  </view>
+
+  <!-- Loading state -->
+  <view class="loading-state" wx:if="{{loading}}">
+    <view class="loading-dot"></view>
+    <view class="loading-dot"></view>
+    <view class="loading-dot"></view>
+    <view class="loading-text">AI 正在认真听...</view>
+  </view>
+
+  <!-- Content -->
+  <scroll-view scroll-y class="fb-content" wx:else>
+
+    <view class="fb-title">{{result.title}}</view>
+    <view class="fb-sub">综合评分 <text class="score-num">{{result.overall}}</text> · {{result.progressText}}</view>
+
+    <!-- 3 维评分卡 -->
+    <view class="score-card">
+      <view class="score-row" wx:for="{{result.scores}}" wx:key="key">
+        <view class="score-label-wrap">
+          <view class="score-label">{{item.label}}</view>
+          <view class="score-desc">{{item.desc}}</view>
+        </view>
+        <view class="stars">
+          <text class="star {{idx < item.value ? 'filled' : ''}}"
+                wx:for="{{5}}" wx:key="*this" wx:for-index="idx" wx:for-item="_">★</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- A/B 对照 -->
+    <view class="compare-card">
+      <view class="compare-label">A / B 对照</view>
+      <view class="compare-title">听听你和标准版的差别</view>
+      <view class="compare-tracks">
+        <view class="track {{activeTrack === 'user' ? 'active' : ''}}" catchtap="onPlayUser">
+          <view class="track-play">
+            <view class="{{(activeTrack === 'user' && playing) ? 'icon-pause' : 'icon-triangle'}}"></view>
+          </view>
+          <view class="track-info">
+            <view class="track-name">你的</view>
+            <view class="track-dur">{{result.userDur}}</view>
+          </view>
+        </view>
+        <view class="track {{activeTrack === 'ai' ? 'active' : ''}}" catchtap="onPlayAi">
+          <view class="track-play">
+            <view class="{{(activeTrack === 'ai' && playing) ? 'icon-pause' : 'icon-triangle'}}"></view>
+          </view>
+          <view class="track-info">
+            <view class="track-name">标准版</view>
+            <view class="track-dur">{{result.aiDur}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 反馈列表 -->
+    <view class="feedback-list">
+      <view class="fb-item" wx:for="{{result.feedback}}" wx:key="time">
+        <view class="fb-icon {{item.type === 'good' ? 'good' : ''}}">
+          <text wx:if="{{item.type === 'good'}}">✓</text>
+          <text wx:else>!</text>
+        </view>
+        <view class="fb-body">
+          <view class="fb-time">{{item.time}}</view>
+          <view class="fb-text">{{item.text}}</view>
+        </view>
+      </view>
+    </view>
+
+  </scroll-view>
+
+  <!-- 底部按钮 -->
+  <view class="fb-actions" wx:if="{{!loading}}">
+    <button class="btn-outline" catchtap="onRetry">再录一次</button>
+    <button class="btn-filled" catchtap="onNext">下一句 →</button>
+  </view>
+
+</view>

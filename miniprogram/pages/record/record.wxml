@@ -1,0 +1,76 @@
+<!-- 跟读 ③ -->
+<view class="page {{recState}}">
+
+  <!-- 状态栏 + 自定义导航栏 -->
+  <view class="nav-bar" style="padding-top: {{statusBarHeight}}px;">
+    <view class="nav-bar-content" style="height: {{navBarHeight}}px;">
+      <view class="nav-back" catchtap="onBack">
+        <view class="back-icon"></view>
+      </view>
+      <view class="nav-title">{{sentence.scene_category}} · {{sentence.index + 1}} / {{sentence.total}}</view>
+      <view class="nav-back" style="visibility: hidden;"></view>
+    </view>
+  </view>
+
+  <view class="record-stage">
+    <view class="step-label">STEP 02 / 跟读</view>
+    <view class="step-title">跟着标准版念一遍</view>
+    <view class="step-sub">红点 = 重音 · ｜ = 停顿</view>
+
+    <!-- 句子（带 stress + pause 标注）-->
+    <view class="sentence-record">
+      <view class="sentence-r">
+        <block wx:for="{{annotated}}" wx:key="idx" wx:for-index="idx">
+          <text class="ch {{item.isStress ? 'stress' : ''}}">{{item.ch}}</text>
+          <text class="pause-mark" wx:if="{{item.pauseAfter}}">｜</text>
+        </block>
+        <text>。</text>
+      </view>
+    </view>
+
+    <!-- 波形对照（占位）-->
+    <view class="waveform-section">
+      <view class="wave-row">
+        <view class="wave-label">AI 版</view>
+        <view class="waveform">
+          <view class="wave-bar ai {{aiPlaying && (idx < aiPlayProgress) ? 'playing' : ''}}"
+                wx:for="{{aiWaveBars}}" wx:key="idx" wx:for-index="idx"
+                style="height: {{item}}rpx"></view>
+        </view>
+        <view class="play-btn" catchtap="onTapAiPlay">
+          <view class="{{aiPlaying ? 'icon-pause' : 'icon-triangle'}}"></view>
+        </view>
+      </view>
+      <view class="wave-row">
+        <view class="wave-label user">你</view>
+        <view class="waveform">
+          <view class="wave-bar user-bar {{userPlaying && (idx < userPlayProgress) ? 'playing' : ''}}"
+                wx:for="{{userWaveBars}}" wx:key="idx" wx:for-index="idx"
+                style="height: {{item}}rpx"></view>
+        </view>
+        <view class="play-btn {{!hasRecorded ? 'disabled' : ''}}" catchtap="onTapUserPlay">
+          <view class="{{userPlaying ? 'icon-pause' : 'icon-triangle'}}"></view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 录音区域 -->
+    <view class="record-area">
+      <view class="record-tip">{{recTip}}</view>
+      <view class="record-btn-wrap">
+        <view class="record-btn-pulse"></view>
+        <view class="record-btn"
+              bindtouchstart="onRecordStart"
+              bindtouchend="onRecordEnd"
+              bindtouchcancel="onRecordEnd">
+          <text>●</text>
+        </view>
+      </view>
+      <view class="record-timer">
+        <text wx:if="{{recState === 'recording'}}" class="live">● 录音中</text>
+        <text>{{recTimerText}}</text>
+      </view>
+      <button class="next-action {{recState === 'recorded' ? 'show' : ''}}" catchtap="onTapNext">查看 AI 点评 →</button>
+    </view>
+  </view>
+</view>

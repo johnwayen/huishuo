@@ -1,0 +1,113 @@
+<!-- 骨架解析 ② -->
+<view class="page">
+
+  <!-- 状态栏 + 自定义导航栏 -->
+  <view class="nav-bar" style="padding-top: {{statusBarHeight}}px;">
+    <view class="nav-bar-content" style="height: {{navBarHeight}}px;">
+      <view class="nav-back" catchtap="onBack">
+        <view class="back-icon"></view>
+      </view>
+      <view class="nav-title">骨架解析</view>
+      <view class="nav-back" style="visibility: hidden;"></view>
+    </view>
+  </view>
+
+  <!-- 句子参考 -->
+  <view class="sentence-ref">
+    <view class="sentence-ref-scene">{{sentence.scene_category}} · {{sentence.index + 1}} / {{sentence.total}} · {{skeleton.name}}</view>
+    <view class="sentence-ref-body">{{sentence.body}}</view>
+  </view>
+
+  <!-- Tabs -->
+  <view class="struct-tabs">
+    <view
+      class="struct-tab {{currentTab === idx ? 'active' : ''}}"
+      wx:for="{{tabs}}"
+      wx:key="*this"
+      wx:for-index="idx"
+      catchtap="onTapTab"
+      data-idx="{{idx}}"
+    >{{item}}</view>
+    <view class="struct-tab-indicator" style="transform: translateX({{currentTab * 100}}%);"></view>
+  </view>
+
+  <!-- Content panes -->
+  <view class="struct-content">
+
+    <!-- Tab 0: 结构骨架 -->
+    <scroll-view scroll-y class="struct-pane {{currentTab === 0 ? 'active' : ''}}" enable-flex>
+      <view class="pane-inner">
+        <view class="slot-card" wx:for="{{sentence.slots}}" wx:key="type" wx:for-index="slotIdx">
+          <view class="slot-tag tag-{{slotIdx + 1}}">{{item.type}}</view>
+          <view class="slot-text">"{{item.text}}"</view>
+          <view class="slot-alts-label">同位可以这样说</view>
+          <view class="slot-alts">
+            <view class="slot-alt" wx:for="{{slotAlts[slotIdx]}}" wx:key="*this" wx:for-item="alt">"{{alt}}"</view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+
+    <!-- Tab 1: 适用场景 -->
+    <scroll-view scroll-y class="struct-pane {{currentTab === 1 ? 'active' : ''}}" enable-flex>
+      <view class="pane-inner">
+        <view class="scenario-block">
+          <view class="scenario-title good">✓ 适合用在</view>
+          <view class="scenario-list">
+            <view class="scenario-item good" wx:for="{{skeleton.good_scenarios}}" wx:key="*this">{{item}}</view>
+          </view>
+        </view>
+
+        <view class="scenario-block">
+          <view class="scenario-title bad">✕ 不适合用</view>
+          <view class="scenario-list">
+            <view class="scenario-item bad" wx:for="{{skeleton.bad_scenarios}}" wx:key="text">
+              <view>{{item.text}}</view>
+              <view class="scenario-item-reason" wx:if="{{item.reason}}">{{item.reason}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+
+    <!-- Tab 2: 怎么读 -->
+    <scroll-view scroll-y class="struct-pane {{currentTab === 2 ? 'active' : ''}}" enable-flex>
+      <view class="pane-inner">
+        <view class="prosody-mood">
+          <view class="prosody-mood-label">情感色温</view>
+          <view class="prosody-mood-value">{{prosody.mood || '真诚 · 温暖'}}</view>
+        </view>
+
+        <view class="prosody-section">
+          <view class="prosody-section-title">
+            <view class="dot-stress"></view>
+            <text>这几个字要重读</text>
+          </view>
+          <view class="prosody-tags">
+            <view class="prosody-tag-stress" wx:for="{{prosody.stresses}}" wx:key="*this">{{item}}</view>
+          </view>
+        </view>
+
+        <view class="prosody-section">
+          <view class="prosody-section-title">
+            <view class="icon-pause"></view>
+            <text>这几处要停顿</text>
+          </view>
+          <view class="prosody-tags">
+            <view class="prosody-tag-pause" wx:for="{{prosody.pauses}}" wx:key="*this">{{item}}</view>
+          </view>
+        </view>
+
+        <view class="prosody-section">
+          <view class="prosody-section-title">
+            <view class="icon-wave"></view>
+            <text>整体语速节奏</text>
+          </view>
+          <view class="prosody-tempo">{{prosody.tempo || '第一段中速平稳，第二段略放慢以加重真诚感，第三段语调微微上扬作为收尾。'}}</view>
+        </view>
+      </view>
+    </scroll-view>
+
+  </view>
+
+</view>

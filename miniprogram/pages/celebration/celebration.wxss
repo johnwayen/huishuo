@@ -1,0 +1,240 @@
+/* 打卡庆祝 ⑤ */
+
+.page {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 80rpx 48rpx 60rpx;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(170deg, #FFF5EF 0%, #FFE6D9 45%, #F4EFE5 100%);
+  box-sizing: border-box;
+}
+
+/* 飘散彩纸 */
+.confetti {
+  position: absolute;
+  width: 14rpx;
+  height: 14rpx;
+  border-radius: 4rpx;
+  opacity: 0.65;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.celebration-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+  position: relative;
+  width: 100%;
+}
+
+.celebration-emoji {
+  font-size: 112rpx;
+  margin-top: 80rpx;
+  line-height: 1;
+  opacity: 0;
+  transform: scale(0.3) rotate(-20deg);
+  animation: emojiPop .9s cubic-bezier(.34,1.56,.64,1) forwards;
+}
+@keyframes emojiPop {
+  0%   { opacity: 0; transform: scale(0.3) rotate(-20deg); }
+  60%  { opacity: 1; transform: scale(1.15) rotate(8deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0); }
+}
+
+.celebration-title {
+  font-size: 48rpx;
+  font-weight: 800;
+  color: var(--ink);
+  letter-spacing: -1rpx;
+  margin-top: 28rpx;
+  text-align: center;
+  opacity: 0;
+  animation: celebFadeUp .6s ease 0.25s forwards;
+}
+.celebration-subtitle {
+  font-size: 26rpx;
+  color: var(--ink-2);
+  margin-top: 12rpx;
+  opacity: 0;
+  animation: celebFadeUp .6s ease 0.35s forwards;
+}
+@keyframes celebFadeUp {
+  from { opacity: 0; transform: translateY(24rpx); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.streak-display {
+  background: #FFF;
+  border-radius: 40rpx;
+  padding: 36rpx 56rpx 40rpx;
+  margin-top: 44rpx;
+  text-align: center;
+  box-shadow: 0 24rpx 64rpx rgba(255,107,82,.18);
+  border: 1rpx solid rgba(255,107,82,.12);
+  opacity: 0;
+  position: relative;
+  animation: celebFadeUp .65s ease 0.5s forwards;
+}
+.streak-display-flame {
+  font-size: 52rpx;
+  line-height: 1;
+}
+.streak-display-num {
+  font-size: 104rpx;
+  font-weight: 800;
+  color: var(--accent);
+  letter-spacing: -5rpx;
+  line-height: 1;
+  margin: 8rpx 0 12rpx;
+  font-variant-numeric: tabular-nums;
+}
+.streak-display-label {
+  font-size: 24rpx;
+  color: var(--ink-2);
+  font-weight: 600;
+  letter-spacing: 1rpx;
+}
+.streak-display-badge {
+  position: absolute;
+  top: -20rpx;
+  right: 28rpx;
+  background: var(--accent);
+  color: #FFF;
+  font-size: 20rpx;
+  font-weight: 700;
+  padding: 10rpx 18rpx;
+  border-radius: 100rpx;
+  letter-spacing: 1rpx;
+  box-shadow: 0 8rpx 24rpx rgba(255,107,82,.35);
+}
+
+.today-stats-row {
+  display: flex;
+  gap: 16rpx;
+  margin-top: 44rpx;
+  width: 100%;
+  opacity: 0;
+  animation: celebFadeUp .6s ease 0.7s forwards;
+}
+.today-stat-cell {
+  flex: 1;
+  background: rgba(255,255,255,.75);
+  border: 1rpx solid rgba(255,255,255,.6);
+  border-radius: 28rpx;
+  padding: 26rpx 12rpx 22rpx;
+  text-align: center;
+}
+.today-stat-num {
+  font-size: 42rpx;
+  font-weight: 800;
+  color: var(--ink);
+  letter-spacing: -1rpx;
+  line-height: 1;
+}
+.today-stat-num .unit {
+  font-size: 22rpx;
+  font-weight: 600;
+  color: var(--ink-2);
+  margin-left: 4rpx;
+}
+.today-stat-label {
+  font-size: 20rpx;
+  color: var(--ink-3);
+  font-weight: 600;
+  margin-top: 10rpx;
+  letter-spacing: 0.5rpx;
+}
+
+.new-formula-badge {
+  margin-top: 36rpx;
+  background: rgba(255,255,255,.85);
+  border: 1rpx solid var(--line);
+  border-radius: 28rpx;
+  padding: 24rpx 28rpx;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+  opacity: 0;
+  animation: celebFadeUp .6s ease 0.85s forwards;
+  box-sizing: border-box;
+}
+.new-formula-badge-icon {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), #FFA391);
+  color: #FFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30rpx;
+  flex-shrink: 0;
+  box-shadow: 0 8rpx 24rpx rgba(255,107,82,.3);
+}
+.new-formula-badge-content { flex: 1; }
+.new-formula-badge-label {
+  font-size: 20rpx;
+  color: var(--accent);
+  font-weight: 800;
+  letter-spacing: 1.2rpx;
+}
+.new-formula-badge-name {
+  font-size: 30rpx;
+  color: var(--ink);
+  font-weight: 700;
+  margin-top: 2rpx;
+}
+
+.celebration-actions {
+  margin-top: auto;
+  padding-top: 44rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+  opacity: 0;
+  animation: celebFadeUp .6s ease 1s forwards;
+  z-index: 2;
+  position: relative;
+}
+.celebration-btn-primary {
+  height: 108rpx;
+  background: var(--ink);
+  color: #FFF;
+  border: none;
+  border-radius: 36rpx;
+  font-size: 32rpx;
+  font-weight: 600;
+  letter-spacing: 1rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+.celebration-btn-primary:active { transform: translateY(2rpx); }
+.celebration-btn-share {
+  height: 92rpx;
+  background: transparent;
+  color: var(--ink-2);
+  border: 3rpx solid rgba(28,27,26,.15);
+  border-radius: 28rpx;
+  font-size: 26rpx;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12rpx;
+  line-height: 1;
+}
+.icon-share {
+  width: 28rpx;
+  height: 28rpx;
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8'/><polyline points='16 6 12 2 8 6'/><line x1='12' y1='2' x2='12' y2='15'/></svg>") no-repeat center / contain;
+}

@@ -1,0 +1,311 @@
+/* 骨架解析 ② */
+
+.page {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-page);
+}
+
+/* ============ 自定义导航栏 ============ */
+.nav-bar { width: 100%; flex-shrink: 0; }
+.nav-bar-content {
+  display: flex;
+  align-items: center;
+  padding: 0 48rpx;
+  justify-content: space-between;
+}
+.nav-back {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink);
+  background: transparent;
+}
+.back-icon {
+  width: 44rpx;
+  height: 44rpx;
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><polyline points='15 18 9 12 15 6'/></svg>") no-repeat center / contain;
+}
+.nav-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+
+/* ============ 句子参考卡 ============ */
+.sentence-ref {
+  margin: 8rpx 48rpx 28rpx;
+  padding: 26rpx 30rpx;
+  background: var(--bg-card);
+  border-radius: 28rpx;
+  border: 1rpx solid var(--line);
+  flex-shrink: 0;
+}
+.sentence-ref-scene {
+  font-size: 22rpx;
+  color: var(--ink-3);
+  font-weight: 600;
+  letter-spacing: 0.8rpx;
+}
+.sentence-ref-body {
+  font-size: 27rpx;
+  color: var(--ink-2);
+  line-height: 1.65;
+  margin-top: 10rpx;
+  font-weight: 500;
+}
+
+/* ============ Tabs ============ */
+.struct-tabs {
+  margin: 0 48rpx;
+  display: flex;
+  position: relative;
+  border-bottom: 1rpx solid var(--line);
+  flex-shrink: 0;
+}
+.struct-tab {
+  flex: 1;
+  text-align: center;
+  padding: 24rpx 0 28rpx;
+  font-size: 28rpx;
+  font-weight: 500;
+  color: var(--ink-3);
+  transition: color .25s;
+}
+.struct-tab.active {
+  color: var(--ink);
+  font-weight: 600;
+}
+.struct-tab-indicator {
+  position: absolute;
+  bottom: -2rpx;
+  left: 0;
+  width: calc(100% / 3);
+  height: 5rpx;
+  background: var(--accent);
+  border-radius: 4rpx;
+  transition: transform .38s cubic-bezier(.22,.61,.36,1);
+}
+
+/* ============ Content panes ============ */
+.struct-content {
+  flex: 1;
+  position: relative;
+  margin: 0 48rpx;
+  overflow: hidden;
+}
+.struct-pane {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(40rpx);
+  transition: opacity .3s, transform .38s cubic-bezier(.22,.61,.36,1);
+}
+.struct-pane.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(0);
+}
+.pane-inner {
+  padding: 32rpx 0 48rpx;
+}
+
+/* ============ Tab 0: 结构骨架 / slot 卡 ============ */
+.slot-card {
+  margin-bottom: 36rpx;
+  padding-bottom: 36rpx;
+  border-bottom: 1rpx solid var(--line);
+}
+.slot-card:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+.slot-tag {
+  display: inline-block;
+  font-size: 22rpx;
+  font-weight: 700;
+  padding: 8rpx 20rpx;
+  border-radius: 12rpx;
+  margin-bottom: 18rpx;
+  letter-spacing: 0.8rpx;
+}
+.slot-tag.tag-1 { background: var(--tag-1-bg); color: var(--tag-1-fg); }
+.slot-tag.tag-2 { background: var(--tag-2-bg); color: var(--tag-2-fg); }
+.slot-tag.tag-3 { background: var(--tag-3-bg); color: var(--tag-3-fg); }
+
+.slot-text {
+  font-size: 30rpx;
+  color: var(--ink);
+  line-height: 1.55;
+  font-weight: 500;
+  margin-bottom: 26rpx;
+}
+.slot-alts-label {
+  font-size: 22rpx;
+  color: var(--ink-3);
+  font-weight: 700;
+  letter-spacing: 1rpx;
+  margin-bottom: 14rpx;
+  text-transform: uppercase;
+}
+.slot-alts {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+.slot-alt {
+  font-size: 26rpx;
+  color: var(--ink-2);
+  line-height: 1.5;
+  padding: 18rpx 24rpx;
+  background: var(--bg-soft);
+  border-radius: 20rpx;
+}
+
+/* ============ Tab 1: 适用场景 ============ */
+.scenario-block {
+  margin-bottom: 44rpx;
+}
+.scenario-block:last-child { margin-bottom: 0; }
+.scenario-title {
+  font-size: 26rpx;
+  font-weight: 700;
+  margin-bottom: 20rpx;
+  letter-spacing: 0.6rpx;
+}
+.scenario-title.good { color: var(--good); }
+.scenario-title.bad { color: var(--bad); }
+.scenario-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14rpx;
+}
+.scenario-item {
+  font-size: 26rpx;
+  color: var(--ink-2);
+  line-height: 1.5;
+  padding: 20rpx 28rpx 20rpx 44rpx;
+  border-radius: 20rpx;
+  background: var(--bg-soft);
+  position: relative;
+}
+.scenario-item::before {
+  content: '';
+  position: absolute;
+  left: 24rpx;
+  top: 34rpx;
+  width: 8rpx;
+  height: 8rpx;
+  background: var(--ink-4);
+  border-radius: 50%;
+}
+.scenario-item.good::before { background: rgba(63, 107, 63, 0.5); }
+.scenario-item.bad::before { background: rgba(163, 84, 36, 0.5); }
+.scenario-item-reason {
+  font-size: 22rpx;
+  color: var(--ink-3);
+  margin-top: 6rpx;
+}
+
+/* ============ Tab 2: 怎么读 / prosody ============ */
+.prosody-mood {
+  text-align: center;
+  margin-bottom: 36rpx;
+  padding: 28rpx;
+  background: var(--accent-soft);
+  border-radius: 28rpx;
+}
+.prosody-mood-label {
+  font-size: 20rpx;
+  color: var(--accent);
+  font-weight: 800;
+  letter-spacing: 3rpx;
+  margin-bottom: 8rpx;
+}
+.prosody-mood-value {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: 1rpx;
+}
+.prosody-section {
+  margin-bottom: 40rpx;
+}
+.prosody-section:last-child { margin-bottom: 0; }
+.prosody-section-title {
+  font-size: 22rpx;
+  color: var(--ink-3);
+  font-weight: 700;
+  letter-spacing: 1.2rpx;
+  margin-bottom: 18rpx;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+}
+.dot-stress {
+  width: 14rpx;
+  height: 14rpx;
+  background: var(--accent);
+  border-radius: 50%;
+}
+.icon-pause {
+  width: 18rpx;
+  height: 22rpx;
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='black'><rect x='3' y='2' width='3.5' height='12' rx='1'/><rect x='9.5' y='2' width='3.5' height='12' rx='1'/></svg>") no-repeat center / contain;
+}
+.icon-wave {
+  width: 28rpx;
+  height: 16rpx;
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 8' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round'><path d='M2 4 Q 5 0, 8 4 T 14 4 L 16 4'/></svg>") no-repeat center / contain;
+}
+.prosody-tags {
+  display: flex;
+  gap: 14rpx;
+  flex-wrap: wrap;
+}
+.prosody-tag-stress {
+  font-size: 26rpx;
+  font-weight: 600;
+  padding: 12rpx 24rpx;
+  border-radius: 16rpx;
+  background: rgba(255, 107, 82, 0.12);
+  color: var(--accent);
+  position: relative;
+}
+.prosody-tag-stress::before {
+  content: '';
+  position: absolute;
+  top: -6rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8rpx;
+  height: 8rpx;
+  background: var(--accent);
+  border-radius: 50%;
+}
+.prosody-tag-pause {
+  font-size: 24rpx;
+  padding: 12rpx 20rpx;
+  border-radius: 16rpx;
+  background: var(--bg-soft);
+  color: var(--ink-2);
+  font-weight: 500;
+}
+.prosody-tempo {
+  padding: 24rpx 28rpx;
+  background: var(--bg-soft);
+  border-radius: 20rpx;
+  font-size: 26rpx;
+  color: var(--ink-2);
+  line-height: 1.6;
+}
